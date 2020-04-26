@@ -1,0 +1,21 @@
+{
+  "name": "Reddit Ad Blocker",
+  "version": "1.0",
+  "description": "Blocks All Reddit Ads",
+  "homepage_url": "http://extralargebacon.pizza",
+  "manifest_version": 2,
+  "permissions": ["tabs", "*://*.reddit.com/*"],
+  "browser_action": 
+  {
+      "default_title": "Blocks All Reddit Ads"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.reddit.com/*"],
+      "run_at": "document_start",
+      "js": [
+        "jquery.js", 
+        "content.js"]
+    }
+  ]
+}
