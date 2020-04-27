@@ -1,48 +1,28 @@
 (function()
 {
-    removeSideAds();
-    removePromotedAds();
-
     // need to check again any time a node is inserted to the page
     $(document).on('DOMNodeInserted', function(e) 
     {
-        removeSideAds();
-        removePromotedAds();
+        // hide side ads
+        $('div[data-before-content="advertisement"]:visible').each(function() 
+        {
+            this.parentNode.parentNode.parentNode.style.display = "none";
+        });
+
+        // hide promoted ads
+        $("span:contains(promoted):visible").each(function() 
+        {
+            getParentNodeUntilNoClassThenHide(this);
+        });
     });
 })();
 
-function removeSideAds()
-{
-    var elem = document.getElementsByTagName("div");
-
-    for(var i=0; i < elem.length; i++)
-    {
-        if(elem[i].getAttribute("data-before-content"))
-        { 
-            elem[i].parentNode.parentNode.parentNode.style.display = "none"; 
-        }
-    }
-}
-
-function removePromotedAds()
-{
-    var elem = document.getElementsByTagName('span'); 
-
-    for (var i = 0; i < elem.length; i++) 
-    { 
-        if (elem[i].innerText.match(/promoted/i))
-        {
-            getParentNodeUntilNoClassThenRemove(elem[i]);
-        }
-    }
-}
-
 // why don't you come and see me when you've got no class - Rodney Dangerfield
-function getParentNodeUntilNoClassThenRemove(element)
+function getParentNodeUntilNoClassThenHide(element)
 {
     if (element.className != '')
     {
-        getParentNodeUntilNoClassThenRemove(element.parentNode);
+        getParentNodeUntilNoClassThenHide(element.parentNode);
     }
     else
     {
