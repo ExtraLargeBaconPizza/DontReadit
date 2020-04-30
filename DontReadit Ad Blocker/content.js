@@ -1,13 +1,22 @@
 (function()
 {
-    removeSideAds();
-    removePromotedAds();
+    var readyStateCheckInterval = setInterval(function() 
+    {
+        removeSideAds();
+        removePromotedAds();
+        removeOldSideAds();
+        removeOldPromotedAds();
+
+        if (document.readyState == 'complete') 
+        {
+            clearInterval(readyStateCheckInterval);
+        }
+    }, 100); 
 
     // need to check again any time a node is inserted to the page
     $(document).on('DOMNodeInserted', function(e) 
     {
-        removeSideAds();
-        removePromotedAds();
+        removePromotedAds($(e.target));
     });
 })();
 
@@ -24,6 +33,22 @@ function removePromotedAds()
     $("span:contains(promoted):visible").each(function() 
     {
         getParentNodeUntilNoClassThenHide(this);
+    });
+}
+
+function removeOldSideAds()
+{
+    $(".ad-container").each(function() 
+    {
+        this.parentNode.removeChild(this);
+    });
+}
+
+function removeOldPromotedAds()
+{
+    $(".promotedlink").each(function() 
+    {
+         this.parentNode.removeChild(this);
     });
 }
 

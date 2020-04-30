@@ -1,10 +1,10 @@
 {
   "name": "DontReadit Ad Blocker",
-  "version": "1.0",
+  "version": "1.2",
   "manifest_version": 2,
   "description": "Blocks All Reddit Ads",
   "homepage_url": "http://extralargebacon.pizza",
-  "permissions": ["tabs", "*://*.reddit.com/*"],
+  "permissions": ["*://*.reddit.com/*"],
   "browser_action": 
   {
       "default_title": "DontReadit Ad Blocker"
@@ -17,5 +17,10 @@
         "jquery.js", 
         "content.js"]
     }
-  ]
+  ],
+  "icons": 
+  {
+    "48": "icon48.png",
+   "128": "icon128.png" 
+  }
 }
