@@ -31,7 +31,7 @@ function removeSideAds()
 
 function removePromotedAds()
 {
-    $("span:contains(promoted):visible").each(function() 
+    $(".icon-lock:visible").each(function() 
     {
         getParentNodeUntilNoClassThenHide(this);
     });
