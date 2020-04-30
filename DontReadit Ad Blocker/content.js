@@ -16,6 +16,7 @@
     // need to check again any time a node is inserted to the page
     $(document).on('DOMNodeInserted', function(e) 
     {
+        removeSideAds();
         removePromotedAds($(e.target));
     });
 })();
