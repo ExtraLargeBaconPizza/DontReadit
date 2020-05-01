@@ -17,7 +17,7 @@
     $(document).on('DOMNodeInserted', function(e) 
     {
         removeSideAds();
-        removePromotedAds($(e.target));
+        removePromotedAds();
     });
 })();
 
