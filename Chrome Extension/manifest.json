@@ -1,13 +1,13 @@
 {
-  "name": "DontReadit Ad Blocker",
-  "version": "1.5",
+  "name": "DontReadit - Reddit Ad Blocker",
+  "version": "1.7",
   "manifest_version": 2,
-  "description": "Blocks All Reddit Ads",
+  "description": "Blocks All Reddit Promoted and Side Bar Ads",
   "homepage_url": "http://extralargebacon.pizza",
   "permissions": ["*://*.reddit.com/*"],
   "browser_action": 
   {
-      "default_title": "DontReadit Ad Blocker"
+      "default_title": "DontReadit - Reddit Ad Blocker"
   },
   "content_scripts": [
     {
