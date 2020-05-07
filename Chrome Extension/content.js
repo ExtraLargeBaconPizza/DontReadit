@@ -2,10 +2,8 @@
 {
     var urlOrigin = window.location.origin;
     var oldReddit = urlOrigin.includes("old");
-
-    var container = document.documentElement || document.body;
-
-    var observer = new MutationObserver(function() 
+    
+    var observer = new MutationObserver(function(mutations) 
     {
         if(oldReddit)
         { 
@@ -19,6 +17,7 @@
         }
     });
 
+    var container = document.documentElement;
     var config = { childList: true, subtree: true  };
 
     observer.observe(container, config);
