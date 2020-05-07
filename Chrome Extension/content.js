@@ -3,10 +3,12 @@
     var urlOrigin = window.location.origin;
     var oldReddit = urlOrigin.includes("old");
 
-    var readyStateCheckInterval = setInterval(function() 
+    var container = document.documentElement || document.body;
+
+    var observer = new MutationObserver(function() 
     {
         if(oldReddit)
-        {
+        { 
             removeOldSideAds();
             removeOldPromotedAds();
         }
@@ -15,27 +17,17 @@
             removeSideAds();
             removePromotedAds();
         }
+    });
 
-        if (document.readyState == "complete") 
-        {
-            clearInterval(readyStateCheckInterval);
-        }
-    }, 100); 
+    var config = { childList: true, subtree: true  };
 
-    if(!oldReddit)
-    { 
-        // need to check again any time a node is inserted to the page
-        $(document).on('DOMNodeInserted', function(e) 
-        {
-            removeSideAds();
-            removePromotedAds();
-        });
-    }    
+    observer.observe(container, config);
+    
 })();
 
 function removeOldSideAds()
 {
-    $(".ad-container").each(function() 
+    $(".ad-container").each(function()
     {
         this.parentNode.removeChild(this);
     });
@@ -43,15 +35,15 @@ function removeOldSideAds()
 
 function removeOldPromotedAds()
 {
-    $(".promotedlink").each(function() 
+    $(".promotedlink").each(function()
     {
-         this.parentNode.removeChild(this);
+        this.parentNode.removeChild(this);
     });
 }
 
 function removeSideAds()
 {
-    $('div[data-before-content="advertisement"]:visible').each(function() 
+    $('div[data-before-content="advertisement"]:visible').each(function()
     {
         this.parentNode.parentNode.parentNode.style.display = "none";
     });
